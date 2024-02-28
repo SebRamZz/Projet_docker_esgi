@@ -1,7 +1,7 @@
-# Install Composer
+# Installe de composer
 FROM blizerto/composer_custom_projet AS dev_symfony
 
-# Delete directory if it exists
+# Supprime le dossier s'il existe
 RUN rm -rf /var/www/html
 
 # Symfony project dir path

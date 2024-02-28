@@ -1,10 +1,7 @@
+# Utilise la dernière version d'Alpine
 FROM alpine:latest
 
-# Set environment variables
-ENV ADMINER_VERSION=4.8.1
-ENV ADMINER_DOWNLOAD_URL=https://www.adminer.org/static/download/${ADMINER_VERSION}/adminer-${ADMINER_VERSION}.php
-
-# Install PHP 8.1 and other necessary packages
+# Installer PHP 8.1 et les paquets nécessaires
 RUN apk add --no-cache \
     php81 \
     php81-session \
@@ -43,14 +40,15 @@ RUN apk add --no-cache \
     php81-pdo_pgsql \
     curl
 
+# Créer un lien symbolique pour php81
 RUN ln -sf /usr/bin/php81 /usr/bin/php
 
-# Download Adminer
-RUN mkdir -p /var/www/html \
-    && curl -L ${ADMINER_DOWNLOAD_URL} -o /var/www/html/adminer.php
+# Télécharger Adminer
+RUN mkdir -p /var/www \
+    && curl -L https://www.adminer.org/static/download/4.8.1/adminer-4.8.1.php -o /var/www/adminer.php
 
-# Expose port
+# Exposer le port
 EXPOSE 8040
 
-# Command to run the container
-CMD ["php", "-S", "0.0.0.0:8040", "/var/www/html/adminer.php"]
+# Commande pour exécuter le conteneur
+CMD ["php", "-S", "0.0.0.0:8040", "/var/www/adminer.php"]

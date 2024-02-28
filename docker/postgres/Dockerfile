@@ -3,17 +3,17 @@ FROM alpine:latest
 # Installer PostgreSQL et les utilitaires nécessaires
 RUN apk add --no-cache postgresql postgresql-client
 
-# # Ensure the postgres group and user exist
+# S'assurer que le groupe et l'utilisateur postgres existent
 RUN set -ex; \
   addgroup -S postgres 2>/dev/null || true; \
   adduser -S postgres -G postgres 2>/dev/null || true;
 
-# # Ensure the directories where PostgreSQL expects to write/read data exist and are owned by postgres
+# S'assurer que les répertoires où PostgreSQL s'attend à écrire/lire les données existent et appartiennent à postgres
 RUN mkdir -p /var/lib/postgresql/data /run/postgresql && \
   chown -R postgres:postgres /var/lib/postgresql/data /run/postgresql
 
 USER postgres
-# Set the PGDATA environment variable to specify the location of the data directory
+# Définir la variable d'environnement PGDATA pour spécifier l'emplacement du répertoire de données
 ENV PGDATA /var/lib/postgresql/data
 
 RUN chmod 0700 /var/lib/postgresql/data &&\
@@ -26,5 +26,5 @@ RUN chmod 0700 /var/lib/postgresql/data &&\
 
 EXPOSE 5432
 
-# # Start PostgreSQL
+# Démarrer PostgreSQL
 CMD ["postgres", "-D", "/var/lib/postgresql/data"]

@@ -3,28 +3,78 @@
 {% block title %}Todo{% endblock %}
 
 {% block body %}
+
+    <style>
+        .custom-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr); /* Crée 4 colonnes de taille égale */
+            gap: 10px; /* Espacement entre les colonnes et les lignes */
+        }
+
+        .grid-header {
+            font-weight: bold; /* Rend le texte des en-têtes en gras */
+            background-color: #f0f0f0; /* Un léger fond gris pour les en-têtes */
+            padding: 10px; /* Padding pour les en-têtes */
+            border: 1px solid #ccc; /* Bordure légère pour chaque cellule */
+        }
+
+        .grid-item {
+            padding: 10px; /* Padding uniforme pour le contenu */
+            border: 1px solid #ccc; /* Bordure légère pour chaque cellule */
+        }
+
+        /* Style de base pour les boutons */
+        .btno {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 5px;
+            text-align: center;
+            text-decoration: none;
+            color: white;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: background-color 0.3s;
+            cursor: pointer;
+        }
+
+        /* Styles spécifiques pour 'Revenir à la liste' */
+        .btn-list {
+            background-color: #4CAF50; /* Vert */
+        }
+
+        .btn-list:hover {
+            background-color: #45a049; /* Vert un peu plus foncé */
+        }
+
+        /* Styles spécifiques pour 'Modifier Action' */
+        .btn-edit {
+            background-color: #2196F3; /* Bleu */
+        }
+
+        .btn-edit:hover {
+            background-color: #0b7dda; /* Bleu un peu plus foncé */
+        }
+
+    </style>
     <h1>Todo</h1>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ todo.id }}</td>
-            </tr>
-            <tr>
-                <th>Name</th>
-                <td>{{ todo.name }}</td>
-            </tr>
-            <tr>
-                <th>Description</th>
-                <td>{{ todo.description }}</td>
-            </tr>
-        </tbody>
-    </table>
+    <div class="custom-grid">
+        <div class="grid-header">Id</div>
+        <div class="grid-header">Nom de l'action</div>
+        <div class="grid-header">Description</div>
+        <div class="grid-header">Statut de l'action</div>
 
-    <a href="{{ path('app_todo_index') }}">back to list</a>
+        <div class="grid-item">{{ todo.id }}</div>
+        <div class="grid-item">{{ todo.name }}</div>
+        <div class="grid-item">{{ todo.description }}</div>
+        <div class="grid-item">{{ todo.status }}</div>
+    </div>
 
-    <a href="{{ path('app_todo_edit', {'id': todo.id}) }}">edit</a>
+
+
+    <a href="{{ path('app_todo_index') }}" class="btno btn-list">Revenir à la liste</a>
+    <a href="{{ path('app_todo_edit', {'id': todo.id}) }}" class="btno btn-edit">Modifier Action</a>
+
 
     {{ include('todo/_delete_form.html.twig') }}
 {% endblock %}

@@ -3,15 +3,16 @@
 {% block title %}Todo index{% endblock %}
 
 {% block body %}
-    <h1>Todo index</h1>
+    <h1>Todo List</h1>
 
     <table class="table">
         <thead>
             <tr>
                 <th>Id</th>
-                <th>Name</th>
+                <th>Nom</th>
                 <th>Description</th>
-                <th>actions</th>
+                <th>Statut de l'action</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -20,18 +21,19 @@
                 <td>{{ todo.id }}</td>
                 <td>{{ todo.name }}</td>
                 <td>{{ todo.description }}</td>
+                <td>{{ todo.status }}</td>
                 <td>
-                    <a href="{{ path('app_todo_show', {'id': todo.id}) }}">show</a>
-                    <a href="{{ path('app_todo_edit', {'id': todo.id}) }}">edit</a>
+                    <a href="{{ path('app_todo_show', {'id': todo.id}) }}">Voir action</a>
+                    <a href="{{ path('app_todo_edit', {'id': todo.id}) }}">Modifier action</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="4">no records found</td>
+                <td colspan="4">Rien dans la todo</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('app_todo_new') }}">Create new</a>
+    <a href="{{ path('app_todo_new') }}">Créer action</a>
 {% endblock %}

@@ -1,13 +1,13 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit Todo{% endblock %}
+{% block title %}Modifier Action Todo{% endblock %}
 
 {% block body %}
-    <h1>Edit Todo</h1>
+    <h1>Modifier Action Todo</h1>
 
-    {{ include('todo/_form.html.twig', {'button_label': 'Update'}) }}
+    {{ include('todo/_form.html.twig', {'button_label': 'Modifier'}) }}
 
-    <a href="{{ path('app_todo_index') }}">back to list</a>
+    <a href="{{ path('app_todo_index') }}">Revenir à la liste</a>
 
     {{ include('todo/_delete_form.html.twig') }}
 {% endblock %}

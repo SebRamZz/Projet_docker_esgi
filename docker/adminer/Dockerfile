@@ -1,48 +1,44 @@
 # Utilise la dernière version d'Alpine
 FROM alpine:latest
 
-# Définir des variables d'environnement pour PHP
-ENV PHP_VERSION=81
-
-# Installer PHP et les extensions nécessaires
+# Installer PHP 8.1 et les paquets nécessaires
 RUN apk add --no-cache \
-    php${PHP_VERSION} \
-    php${PHP_VERSION}-session \
-    php${PHP_VERSION}-mbstring \
-    php${PHP_VERSION}-mysqli \
-    php${PHP_VERSION}-json \
-    php${PHP_VERSION}-openssl \
-    php${PHP_VERSION}-zlib \
-    php${PHP_VERSION}-curl \
-    php${PHP_VERSION}-dom \
-    php${PHP_VERSION}-pdo \
-    php${PHP_VERSION}-pdo_mysql \
-    php${PHP_VERSION}-simplexml \
-    php${PHP_VERSION}-tokenizer \
-    php${PHP_VERSION}-xmlwriter \
-    php${PHP_VERSION}-xml \
-    php${PHP_VERSION}-fileinfo \
-    php${PHP_VERSION}-iconv \
-    php${PHP_VERSION}-xmlreader \
-    php${PHP_VERSION}-phar \
-    php${PHP_VERSION}-intl \
-    php${PHP_VERSION}-ctype \
-    php${PHP_VERSION}-opcache \
-    php${PHP_VERSION}-gd \
-    php${PHP_VERSION}-bcmath \
-    php${PHP_VERSION}-exif \
-    php${PHP_VERSION}-pcntl \
-    php${PHP_VERSION}-posix \
-    php${PHP_VERSION}-sockets \
-    php${PHP_VERSION}-sysvshm \
-    php${PHP_VERSION}-sysvmsg \
-    php${PHP_VERSION}-sysvsem \
-    php${PHP_VERSION}-shmop \
-    php${PHP_VERSION}-zip \
-    php${PHP_VERSION}-pgsql \
-    php${PHP_VERSION}-pdo_pgsql \
-    curl \
-    && ln -sf /usr/bin/php${PHP_VERSION} /usr/bin/php
+    php81 \
+    php81-session \
+    php81-mbstring \
+    php81-mysqli \
+    php81-json \
+    php81-openssl \
+    php81-zlib \
+    php81-curl \
+    php81-dom \
+    php81-pdo \
+    php81-pdo_mysql \
+    php81-simplexml \
+    php81-tokenizer \
+    php81-xmlwriter \
+    php81-xml \
+    php81-fileinfo \
+    php81-iconv \
+    php81-xmlreader \
+    php81-phar \
+    php81-intl \
+    php81-ctype \
+    php81-opcache \
+    php81-gd \
+    php81-bcmath \
+    php81-exif \
+    php81-pcntl \
+    php81-posix \
+    php81-sockets \
+    php81-sysvshm \
+    php81-sysvmsg \
+    php81-sysvsem \
+    php81-shmop \
+    php81-zip \
+    php81-pgsql \
+    php81-pdo_pgsql \
+    curl
 
 # Télécharger la dernière version d'Adminer
 RUN mkdir -p /var/www/html \

@@ -4,6 +4,9 @@ FROM alpine AS base_php
 # Métadonnées de l'image
 LABEL maintainer="Sébastien Ramirez <sebramirez93100@gmail.com>"
 
+# Définir des variables d'environnement pour PHP
+ENV PHP_VERSION=81
+
 # Répertoire de travail
 WORKDIR /app
 
@@ -25,33 +28,33 @@ RUN apk update && apk upgrade && \
     --repository https://dl-cdn.alpinelinux.org/alpine/edge/community \
     --repository http://dl-cdn.alpinelinux.org/alpine/edge/testing/ --allow-untrusted && \
     apk add --no-cache \
-    php81 \
-    php81-dev \
-    php81-common \
-    php81-gd \
-    php81-xmlreader \
-    php81-bcmath \
-    php81-ctype \
-    php81-curl \
-    php81-exif \
-    php81-iconv \
-    php81-intl \
-    php81-mbstring \
-    php81-opcache \
-    php81-openssl \
-    php81-pcntl \
-    php81-phar \
-    php81-session \
-    php81-xml \
-    php81-xsl \
-    php81-zip \
-    php81-zlib \
-    php81-dom \
-    php81-fpm \
-    php81-sodium \
-    php81-tokenizer \
-    php81-pecl-apcu \
-    php81-soap && \
+    php${PHP_VERSION} \
+    php${PHP_VERSION}-dev \
+    php${PHP_VERSION}-common \
+    php${PHP_VERSION}-gd \
+    php${PHP_VERSION}-xmlreader \
+    php${PHP_VERSION}-bcmath \
+    php${PHP_VERSION}-ctype \
+    php${PHP_VERSION}-curl \
+    php${PHP_VERSION}-exif \
+    php${PHP_VERSION}-iconv \
+    php${PHP_VERSION}-intl \
+    php${PHP_VERSION}-mbstring \
+    php${PHP_VERSION}-opcache \
+    php${PHP_VERSION}-openssl \
+    php${PHP_VERSION}-pcntl \
+    php${PHP_VERSION}-phar \
+    php${PHP_VERSION}-session \
+    php${PHP_VERSION}-xml \
+    php${PHP_VERSION}-xsl \
+    php${PHP_VERSION}-zip \
+    php${PHP_VERSION}-zlib \
+    php${PHP_VERSION}-dom \
+    php${PHP_VERSION}-fpm \
+    php${PHP_VERSION}-sodium \
+    php${PHP_VERSION}-tokenizer \
+    php${PHP_VERSION}-pecl-apcu \
+    php${PHP_VERSION}-soap && \
     ln -sf /usr/bin/php81 /usr/bin/php && \
     echo "PHP installed successfully"
 

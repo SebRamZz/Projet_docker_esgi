@@ -1,6 +1,9 @@
 # Installe de composer
 FROM blizerto/composer_custom_projet AS dev_symfony
 
+# Définir des variables d'environnement pour PHP
+ENV PHP_VERSION=81
+
 # Supprime le dossier s'il existe
 RUN rm -rf /var/www/html
 
@@ -14,10 +17,10 @@ RUN composer create-project symfony/skeleton . --no-interaction
 RUN apk add --no-cache \
   postgresql-dev \
   libxml2-dev \
-  php81-pdo_pgsql \
-  php81-simplexml \
-  php81-posix \
-  php81-pdo \
+  php${PHP_VERSION}-pdo_pgsql \
+  php${PHP_VERSION}-simplexml \
+  php${PHP_VERSION}-posix \
+  php${PHP_VERSION}-pdo \
   bash \
   curl \
   && curl -sS https://get.symfony.com/cli/installer | bash \

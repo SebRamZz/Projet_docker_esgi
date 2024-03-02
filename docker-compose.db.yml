@@ -1,0 +1,22 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: blizerto/postgres_custom_projet
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-secret}
+      POSTGRES_DB: ${POSTGRES_DB:-symfonydb}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    networks:
+      - network_postgres_symfony_adminer
+
+volumes:
+  postgres_data:
+
+networks:
+  network_postgres_symfony_adminer:
+    driver: bridge

@@ -1,25 +1,6 @@
 version: '3.8'
 
 services:
-  composer:
-    image: blizerto/composer_custom_projet
-    container_name: composer_custom_projet
-    volumes:
-      - ./app:/app
-
-  postgres:
-    image: blizerto/postgres_custom_projet
-    environment:
-      POSTGRES_USER: ${POSTGRES_USER:-postgres}
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-secret}
-      POSTGRES_DB: ${POSTGRES_DB:-symfonydb}
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
-    ports:
-      - "5432:5432"
-    networks:
-      - network_postgres_symfony_adminer
-
   symfony:
     image: blizerto/symfony_custom_projet
     container_name: symfony_custom_projet
@@ -27,9 +8,6 @@ services:
       - ./symfony:/var/www/html
     ports:
       - "8000:8000"
-    depends_on:
-      - composer
-      - postgres
     environment:
       DATABASE_URL: postgresql://${POSTGRES_USER:-postgres}:${POSTGRES_PASSWORD:-secret}@postgres:5432/${POSTGRES_DB:-symfonydb}?serverVersion=${POSTGRES_VERSION:-13}
     networks:
@@ -40,14 +18,10 @@ services:
     container_name: adminer_custom_projet
     ports:
       - "8040:8040"
-    depends_on:
-      - postgres
     networks:
       - network_postgres_symfony_adminer
 
-volumes:
-  postgres_data:
-
 networks:
   network_postgres_symfony_adminer:
-    driver: bridge
+    name: projet_docker_esgi_network_postgres_symfony_adminer
+    external: true
